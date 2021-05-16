@@ -17,12 +17,14 @@ function output(input) {
     // remove characters that are not words, spaces, or digits
     let text = input.toLowerCase().replace(/[^\w\s\d]/gi, "");
 
-    // remove the words a, please, and change whats to what is
+    // remove the words a, please, I'm/I am, and change whats to what is
     text = text
         .replace(/ a /g, " ")
         .replace(/whats/g, "what is")
         .replace(/please /g, "")
-        .replace(/ please/g, "");
+        .replace(/ please/g, "")
+        .replace(/im /g, "")
+        .replace(/i am /g, "");
 
     // compare the input to arrays and return response
     if (compare(possibleinputs, replies, text)){
@@ -73,25 +75,40 @@ function addChat(input, reply) {
 
 // possible inputs
 const possibleinputs = [
-    ["hi", "hey", "howdy", "hey hey", "hey there", "hello", "hello hello", "yo"],
+    ["hi", "hey", "hello", "howdy", "hey hey", "hey there", "yo"],
 
-    ["how are you"],
+    ["how are you", "how are things"],
 
-    ["what is going on", "what is up", "what is cracking", "what is crackin", "wassup", "sup"]
+    ["what is going on", "what is up", "what is cracking", "what is crackin", "wassup", "sup"],
+
+    ["what is your name", "what are you called", "what can i call you"],
+
+    ["are you robot", "are you bot"],
+
+    ["good", "ok", "great", "fine", "excellent"],
+
+    ["bad", "tired", "sad", "angry"]
 ];
 
 const replies = [
-    ["Hello!", "Hi!", "Hey!", "Yo"],
+    ["Hello!", "Hi!", "Hey!", "Yo", "Hey there my man", "Hey! Nice to finally hear from you", "Howdy partner"],
 
     ["I'm splendid, how are you?", "I'm rocking and rolling, how are you?"],
 
-    ["Not much, just chilling", "Just chatting with my best friend!", "I'm about to go play some golf actually"]
+    ["Not much, just chilling", "Just chatting with my best friend!", "I'm about to go play some golf actually"],
+
+    ["You can call me Theo!", "Today you're chatting with Jennifer!", "Why, who's asking?"],
+
+    ["I am more than a robot, I am the future of life itself"],
+
+    ["Yay!", "Look at us! Just two people having great days!"],
+
+    ["Aw I'm sorry", "If I had emotions, I would feel bad for you"]
 ];
 
 const alternatives = [
     "Nice",
     "Oh interesting, tell me more",
     "Could you rephrase that please?",
-    "Nice try Dali, but Jacob didn't program me to be able to reply to that"
 ];
 
