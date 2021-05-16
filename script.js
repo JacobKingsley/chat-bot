@@ -29,7 +29,7 @@ function output(input) {
         reply = compare(possibleinputs, replies, text);
     }
     else {
-        reply = alternative[Math.floor(Math.random * alternative.length)];
+        reply = alternatives[Math.floor(Math.random() * alternatives.length)];
     }
 
     //return to the site
@@ -51,16 +51,23 @@ function compare(possibleinputsArray, repliesArray, text) {
 }
 
 function addChat(input, reply) {
+    //print user input
     const chatContainer = document.getElementById("messages");
     let userDiv = document.createElement("div");
     userDiv.className = "user";
-    userDiv.innerText = input;
+    userDiv.innerText = "You: " + input;
     chatContainer.appendChild(userDiv);
 
+    // print bot reply
     let chatbotDiv = document.createElement("div");
     chatbotDiv.className = "chatbot";
-    chatbotDiv.innerText = reply;
+    chatbotDiv.innerText = "Chatbot: Processing...";
     chatContainer.appendChild(chatbotDiv);
+
+    // create artificial delay
+    setTimeout(() => {
+        chatbotDiv.innerText = "Chatbot: " + reply;
+    }, 500)
 
 }
 
@@ -81,7 +88,7 @@ const replies = [
     ["Not much, just chilling", "Just chatting with my best friend!", "I'm about to go play some golf actually"]
 ];
 
-const alternative = [
+const alternatives = [
     "Nice",
     "Oh interesting, tell me more",
     "Could you rephrase that please?",
